@@ -12,15 +12,8 @@ load_board(BoardFileName, Board):-
     read(Board),            % Reads the first Prolog-term from the file
     seen.                   % Closes the io-stream
 
-is_alive(Row, Column, BoardFileName):- 
-    load_board(BoardFileName, Board),
-    nth1_2d(Row, Column, Board, Stone),
-    (Stone = b; Stone = w),
-    check_alive(Row, Column, Board, Stone, []), !.
-
 % Checks whether the group of stones connected to
 % the stone located at (Row, Column) is alive or dead.
-
 check_alive(Row, Column, Board, Stone, Visited):-
     nth1_2d(Row, Column, Board, Stone),
     (Stone = b; Stone = w). % Example statement so that the function returns. Substitute this with your own logic
