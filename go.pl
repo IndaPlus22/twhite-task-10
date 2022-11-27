@@ -17,7 +17,7 @@ is_alive(Row, Column, BoardFileName) :-
     read_file(BoardFileName, Board),
     nth1_2d(Row, Column, Board, Stone),
     (Stone = b; Stone = w),
-    check_alive(Row, Column, Board, Stone, []).
+    check_alive(Row, Column, Board, Stone, []). !.
 
 % Checks whether the group of stones connected to
 % the stone located at (Row, Column) is alive or dead.
@@ -29,7 +29,3 @@ check_alive(Row, Column, Board, Stone, Checked):-
     Down is Row + 1, 
     Right is Row + 1,
     Left is Row - 1,
-    (check_alive(Down, Column, Board, Stone, [(Row, Column)|Checked]);
-    check_alive(Up, Column, Board, Stone, [(Row, Column)|Checked]);
-    check_alive(Row, Left, Board, Stone, [(Row, Column)|Checked]);
-    check_alive(Row, Right, Board, Stone, [(Row, Column)|Checked])).
